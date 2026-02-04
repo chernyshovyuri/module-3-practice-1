@@ -120,7 +120,7 @@ class Smartahone:
 
 
     def __str__(self):
-        return f"Brand: {self.brand}\nModel: {self.model}\nSystem: {self.system}\nBuilt-in memory: {self.memory_hard}\nRAM: {self.memory_fast}\nLevel battery: {self.battery_level}\nStatus phone: {self.is_included}"
+        return f"Brand: {self.brand}\nModel: {self.model}\nSystem: {self.system}\nBuilt-in memory: {self.memory_hard}\nRAM: {self.memory_fast}\nLevel battery: {self.battery_level}\nStatus phone: {self.is_included}\nApplication: {self.application.name}"
 
 
     def on_phone(self):
@@ -153,22 +153,35 @@ class Smartahone:
 
 
 
-
     def delete_application(self, dell_application: str):
 
-    target_application = None
-
-    for application in self.application:
-        if application == dell_application:
+        if dell_application.lower() == '':
+            return None
 
 
 
+        if dell_application.lower() not in self.application.name:
+            return None
 
-    def changer_battery(self):
-        pass
+        target_application = None
 
-    def dischanger_battery(self):
-        pass
+        for item in self.application.name:
+            if item.lower() == dell_application.lower():
+                target_application = item
+                break
+
+        self.application.name.remove(target_application)
+
+
+
+    def changer_battery(self, new_battery: float):
+
+        if new_battery == 0 or new_battery > 100 or new_battery ==  self.battery_level:
+            return None
+
+        self.battery_level == new_battery
+
+
 
     def get_phone_is_included(self) -> bool:
         return True if self.is_included else False
@@ -177,8 +190,9 @@ class Smartahone:
         return self.battery_level
 
 
+application = Application(['Головоломка'], 102)
 
-phone = Smartahone('Elka-Palrf', 'Razrydamet', 'RusOperationSystem_New_super_Ultra', 16, 4, 15, False)
+phone = Smartahone('Elka-Palrf', 'Razrydamet', 'RusOperationSystem_New_super_Ultra', 16, 4, 15, False, application)
 
 
 
