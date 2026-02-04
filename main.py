@@ -79,6 +79,21 @@ from __future__ import annotations
 
 #2
 
+class Application:
+
+    name: list[str]
+    memory_size: float
+
+
+
+    def __init__(self, name: list[str], memory_size: float):
+
+        self.name = name
+        self.memory_size = memory_size
+
+
+
+
 class Smartahone:
 
     brand: str
@@ -88,10 +103,10 @@ class Smartahone:
     memory_fast: float
     battery_level: float
     is_included: bool
-    application: list[str]
+    application: Application
 
 
-    def __init__(self, brand: str, model: str, system: str, memory_hard: float, memory_fast: float, battery_level: float, is_included: bool, application: list[str]):
+    def __init__(self, brand: str, model: str, system: str, memory_hard: float, memory_fast: float, battery_level: float, is_included: bool, application: Application):
 
         self.brand = brand
         self.model = model
@@ -121,12 +136,21 @@ class Smartahone:
 
         self.system = new_system
 
+
+
     def set_new_application(self, new_application: str):
 
-        if self.application.lower() == new_application.lower() or new_application.lower() == '':
+
+        if new_application.lower() == '':
             return None
 
-        self.application.append(new_application)
+        for item in self.application.name:
+            if item.lower() == new_application.lower():
+                return None
+
+        self.application.name.append(new_application)
+
+
 
 
 
@@ -136,6 +160,7 @@ class Smartahone:
 
     for application in self.application:
         if application == dell_application:
+
 
 
 
