@@ -79,121 +79,211 @@ from __future__ import annotations
 
 #2
 
-class Application:
+# class Application:
+#
+#     name: list[str]
+#     memory_size: float
+#
+#
+#
+#     def __init__(self, name: list[str], memory_size: float):
+#
+#         self.name = name
+#         self.memory_size = memory_size
+#
+#
+#
+#
+# class Smartahone:
+#
+#     brand: str
+#     model: str
+#     system: str
+#     memory_hard: float
+#     memory_fast: float
+#     battery_level: float
+#     is_included: bool
+#     application: Application
+#
+#
+#     def __init__(self, brand: str, model: str, system: str, memory_hard: float, memory_fast: float, battery_level: float, is_included: bool, application: Application):
+#
+#         self.brand = brand
+#         self.model = model
+#         self.system = system
+#         self.memory_hard = memory_hard
+#         self.memory_fast = memory_fast
+#         self.battery_level = battery_level
+#         self.is_included = is_included
+#         self.application = application
+#
+#
+#
+#     def __str__(self):
+#         return f"Brand: {self.brand}\nModel: {self.model}\nSystem: {self.system}\nBuilt-in memory: {self.memory_hard}\nRAM: {self.memory_fast}\nLevel battery: {self.battery_level}\nStatus phone: {self.is_included}\nApplication: {self.application.name}"
+#
+#
+#     def on_phone(self):
+#         self.is_included == True
+#
+#     def off_phone(self):
+#         self.is_included == False
+#
+#     def set_new_system(self, new_system: str):
+#
+#         if new_system.lower() != self.system.lower() or new_system.lower() == '':
+#             return None
+#
+#         self.system = new_system
+#
+#
+#
+#     def set_new_application(self, new_application: str):
+#
+#
+#         if new_application.lower() == '':
+#             return None
+#
+#         for item in self.application.name:
+#             if item.lower() == new_application.lower():
+#                 return None
+#
+#         self.application.name.append(new_application)
+#
+#
+#
+#
+#     def delete_application(self, dell_application: str):
+#
+#         if dell_application.lower() == '':
+#             return None
+#
+#
+#
+#         if dell_application.lower() not in self.application.name:
+#             return None
+#
+#         target_application = None
+#
+#         for item in self.application.name:
+#             if item.lower() == dell_application.lower():
+#                 target_application = item
+#                 break
+#
+#         self.application.name.remove(target_application)
+#
+#
+#
+#     def changer_battery(self, new_battery: float):
+#
+#         if new_battery == 0 or new_battery > 100 or new_battery ==  self.battery_level:
+#             return None
+#
+#         self.battery_level == new_battery
+#
+#
+#
+#     def get_phone_is_included(self) -> bool:
+#         return True if self.is_included else False
+#
+#     def get_level_battery(self):
+#         return self.battery_level
+#
+#
+# application = Application(['Головоломка'], 102)
+#
+# phone = Smartahone('Elka-Palrf', 'Razrydamet', 'RusOperationSystem_New_super_Ultra', 16, 4, 15, False, application)
+#
+#
+#
+# print(phone)
 
-    name: list[str]
-    memory_size: float
+#3
+
+class Ingredients:
+
+    ingredients: list[str]
 
 
+    def __init__(self, ingredients: list[str]):
+        self.ingredients = ingredients
 
-    def __init__(self, name: list[str], memory_size: float):
 
+class Potion:
+
+    name: str
+    ingredients: Ingredients
+    difficultu_preparation: int
+    effect: str
+    ready: bool
+
+
+    def __init__(self, name: str, ingredients:Ingredients, difficultu_preparation: int, effect: str, ready: bool):
         self.name = name
-        self.memory_size = memory_size
-
-
-
-
-class Smartahone:
-
-    brand: str
-    model: str
-    system: str
-    memory_hard: float
-    memory_fast: float
-    battery_level: float
-    is_included: bool
-    application: Application
-
-
-    def __init__(self, brand: str, model: str, system: str, memory_hard: float, memory_fast: float, battery_level: float, is_included: bool, application: Application):
-
-        self.brand = brand
-        self.model = model
-        self.system = system
-        self.memory_hard = memory_hard
-        self.memory_fast = memory_fast
-        self.battery_level = battery_level
-        self.is_included = is_included
-        self.application = application
+        self.ingredients = ingredients
+        self.difficultu_preparation = difficultu_preparation
+        self.effect = effect
+        self.ready = ready
 
 
 
     def __str__(self):
-        return f"Brand: {self.brand}\nModel: {self.model}\nSystem: {self.system}\nBuilt-in memory: {self.memory_hard}\nRAM: {self.memory_fast}\nLevel battery: {self.battery_level}\nStatus phone: {self.is_included}\nApplication: {self.application.name}"
-
-
-    def on_phone(self):
-        self.is_included == True
-
-    def off_phone(self):
-        self.is_included == False
-
-    def set_new_system(self, new_system: str):
-
-        if new_system.lower() != self.system.lower() or new_system.lower() == '':
-            return None
-
-        self.system = new_system
-
-
-
-    def set_new_application(self, new_application: str):
-
-
-        if new_application.lower() == '':
-            return None
-
-        for item in self.application.name:
-            if item.lower() == new_application.lower():
-                return None
-
-        self.application.name.append(new_application)
+        return f'Name: {self.name}\nIngredients: { self.ingredients.ingredients}\nDifficultu preparation: {self.difficultu_preparation}\nEffect: {self.effect}\nReady: {self.ready}'
 
 
 
 
-    def delete_application(self, dell_application: str):
 
-        if dell_application.lower() == '':
-            return None
+    
 
 
 
-        if dell_application.lower() not in self.application.name:
-            return None
-
-        target_application = None
-
-        for item in self.application.name:
-            if item.lower() == dell_application.lower():
-                target_application = item
-                break
-
-        self.application.name.remove(target_application)
 
 
 
-    def changer_battery(self, new_battery: float):
-
-        if new_battery == 0 or new_battery > 100 or new_battery ==  self.battery_level:
-            return None
-
-        self.battery_level == new_battery
 
 
 
-    def get_phone_is_included(self) -> bool:
-        return True if self.is_included else False
-
-    def get_level_battery(self):
-        return self.battery_level
-
-
-application = Application(['Головоломка'], 102)
-
-phone = Smartahone('Elka-Palrf', 'Razrydamet', 'RusOperationSystem_New_super_Ultra', 16, 4, 15, False, application)
 
 
 
-print(phone)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
