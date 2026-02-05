@@ -1,6 +1,9 @@
 
 from __future__ import annotations
 
+from operator import itemgetter
+
+
 #1
 # class Car:
 #
@@ -200,41 +203,126 @@ from __future__ import annotations
 
 #3
 
-class Ingredients:
+# class Ingredient:
+#
+#     ingredient: list[str]
+#
+#
+#     def __init__(self, ingredient: list[str]):
+#         self.ingredient = ingredient
+#
+#
+#
+# class Potion:
+#
+#     name: str
+#     ingredients: Ingredient
+#     difficultu_preparation: int
+#     effect: str
+#     ready: bool
+#
+#
+#     def __init__(self, name: str, ingredient:Ingredient, difficultu_preparation: int, effect: str, ready: bool):
+#         self.name = name
+#         self.ingredient = ingredient
+#         self.difficultu_preparation = difficultu_preparation
+#         self.effect = effect
+#         self.ready = ready
+#
+#
+#
+#     def __str__(self):
+#         return f'Name: {self.name}\nIngredients: { self.ingredient.ingredient}\nDifficultu preparation: {self.difficultu_preparation}\nEffect: {self.effect}\nReady: {self.ready}'
+#
+#
+#
+#     def add_ingredient(self, new_ingredient: str):
+#
+#         name =  new_ingredient.lower().strip()
+#
+#         if name == '':
+#             return None
+#
+#         for item in self.ingredient.ingredient:
+#             if item == name:
+#                 return None
+#
+#         self.ingredient.ingredient.append(name)
+#
+#
+#     def delete_ingredient(self, ingredient: str):
+#
+#         name = ingredient.lower().strip()
+#
+#         if name == '':
+#             return None
+#
+#         target_ingredient = None
+#
+#         for item in self.ingredient.ingredient:
+#             if name == item.lower():
+#                 target_ingredient = item
+#                 break
+#
+#         self.ingredient.ingredient.remove(target_ingredient)
+#
+#
+#     def set_difficulty (self, new_difficulty: int):
+#
+#         if new_difficulty < 1 or new_difficulty > 10:
+#             return None
+#
+#         self.difficultu_preparation = new_difficulty
+#
+#
+#     def set_effect(self, new_effect: str):
+#
+#         effect = new_effect.lower().strip()
+#
+#         if effect == '':
+#             return None
+#
+#         if effect != self.effect:
+#             self.effect = effect
+#
+#
+#     def ger_ready(self):
+#
+#         return self.ready == True
+#
+#
+#
+#
+#
+# ingredient = Ingredient(['Зуб дракона'])
+#
+# potion = Potion('Болотный отвар', ingredient, 2, 'Длительный сон', True)
+#
+# potion.add_ingredient('Молоко бегемота')
+# potion.add_ingredient('коготь тигра')
+# potion.delete_ingredient("Зуб дракона")
+# potion.set_difficulty(8)
+# potion.ger_ready()
+#
+# potion.set_effect('Слепота')
+#
+#
+#
+# print(potion)
 
-    ingredients: list[str]
 
-
-    def __init__(self, ingredients: list[str]):
-        self.ingredients = ingredients
-
-
-class Potion:
-
-    name: str
-    ingredients: Ingredients
-    difficultu_preparation: int
-    effect: str
-    ready: bool
-
-
-    def __init__(self, name: str, ingredients:Ingredients, difficultu_preparation: int, effect: str, ready: bool):
-        self.name = name
-        self.ingredients = ingredients
-        self.difficultu_preparation = difficultu_preparation
-        self.effect = effect
-        self.ready = ready
-
-
-
-    def __str__(self):
-        return f'Name: {self.name}\nIngredients: { self.ingredients.ingredients}\nDifficultu preparation: {self.difficultu_preparation}\nEffect: {self.effect}\nReady: {self.ready}'
+#4
 
 
 
 
 
-    
+
+
+
+
+
+
 
 
 
