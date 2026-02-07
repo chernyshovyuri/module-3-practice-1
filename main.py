@@ -348,6 +348,37 @@ class Library:
         return self.__user
 
 
+    def __add_book(self, new_book: list[str]) -> None:
+
+        blank_book = new_book.lower().strip()
+
+        for elem in self.__book:
+            if elem.lower().strip() == blank_book:
+                raise ValueError()
+
+        self.__book.append(new_book)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class User:
 
@@ -377,7 +408,7 @@ class User:
 
 class Book:
 
-    __name: str
+    __title: str
     __author: str
     __publication_year: int
     __genre: str
@@ -385,9 +416,9 @@ class Book:
     __user: list[User]
 
 
-    def __init__(self, name: str, author: str, publication_year: int, genre: str, is_issued: bool, user: list[User]):
+    def __init__(self, title: str, author: str, publication_year: int, genre: str, is_issued: bool, user: list[User]):
 
-        self.__name = name
+        self.__title = title
         self.__author = author
         self.__publication_year = publication_year
         self.__genre = genre
