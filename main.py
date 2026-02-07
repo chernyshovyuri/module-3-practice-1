@@ -1,7 +1,10 @@
 
 from __future__ import annotations
 
+from enum import global_enum_repr
+from multiprocessing.connection import address_type
 from operator import itemgetter
+from tkinter.font import names
 
 
 #1
@@ -312,6 +315,109 @@ from operator import itemgetter
 
 
 #4
+
+class Library:
+
+    __name: str
+    __adress: str
+    __book: list[Book]
+    __user: list[User]
+
+
+    def __init__(self, name: str, address: str, book: list[Book], user: list[User]):
+
+        self.__name = name
+        self.__address = address
+        self.__book = book
+        self.__user = user
+
+
+    def __str__(self):
+        return f'Name: {self.__name}\nAddress: { self.__address}\nBooks: {self.__book}\nUsers: {self.__user}'
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_address(self) -> str:
+        return self.__address
+
+    def get_book(self) -> list[Book]:
+        return self.__book
+
+    def get_user(self) -> list[User]:
+        return self.__user
+
+
+
+class User:
+
+    __name: str
+    __library_card: int
+    __book: list[Book]
+
+    def __init__(self, name: str, library_card: int, book: list[Book]):
+
+        self.__name = name
+        self.__library_card = library_card
+        self.__book = book
+
+
+    def __str__(self):
+        return f'Name: {self.__name}\nLibrary card: {self.__library_card}\nBook: {self.__book}'
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_library_card(self) -> int:
+        return self.__library_card
+
+
+
+
+
+class Book:
+
+    __name: str
+    __author: str
+    __publication_year: int
+    __genre: str
+    __is_issued: bool
+    __user: list[User]
+
+
+    def __init__(self, name: str, author: str, publication_year: int, genre: str, is_issued: bool, user: list[User]):
+
+        self.__name = name
+        self.__author = author
+        self.__publication_year = publication_year
+        self.__genre = genre
+        self. __is_issued = is_issued
+        self.__user = user
+
+
+    def __str__(self):
+        return f'Name: {self.__name}\nAuthor{self.__author}\nYear publication: {self.__publication_year}\nGenre: {self.__genre}\nIssued: {None}\nUser: {None}'
+
+
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_author(self) -> str:
+        return self.__author
+
+    def get_publication_year(self) -> int:
+        return self.__publication_year
+
+    def get_genre(self) -> str:
+        return self.__genre
+
+    def get_is_issued(self) -> bool:
+        return self.__is_issued
+
+
+
+
 
 
 
