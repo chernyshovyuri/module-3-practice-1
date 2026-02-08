@@ -377,8 +377,6 @@ class Library:
 
         return True
 
-    def get_title(self):
-        pass
 
 
 class User:
@@ -453,7 +451,7 @@ class Book:
 
 
     def __str__(self):
-        return f'Name: {self.__title}\nAuthor{self.__author}\nYear publication: {self.__publication_year}\nGenre: {self.__genre}\nIssued: {None}\nUser: {None}'
+        return f'Name: {self.__title}\nAuthor{self.__author}\nYear publication: {self.__publication_year}\nGenre: {self.__genre}\nUser: {self.__owner}'
 
 
     def __repr__(self):
@@ -471,6 +469,9 @@ class Book:
 
     def get_genre(self) -> str:
         return self.__genre
+
+    def get_owner(self) -> User | None:
+        return self.__owner
 
 
     def set_owner(self, user: User):
@@ -502,10 +503,11 @@ library.register_user(bob)
 
 library.register_book(voina_mir)
 
-library.try_give_to_book(bob, 'voina_mir' )
+library.try_give_to_book(bob, 'Война и Мир' )
 
-
-
+print('='*20)
+print(voina_mir.get_owner())
+print('='*20)
 
 
 print(bob)
