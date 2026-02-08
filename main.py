@@ -333,7 +333,7 @@ class Library:
 
 
     def __str__(self):
-        return f'Name: {self.__name}\nAddress: { self.__address}'
+        return f'Name: {self.__name}\nAddress: { self.__address}\nBooks: {self.__books}\nUsers: {self.__users}'
 
     def get_name(self) -> str:
         return self.__name
@@ -357,6 +357,7 @@ class Library:
             self.__users.append(user)
 
 
+# НЕ выдается книга пользователю ошибку выдает!!!
 
     def try_give_to_book(self, user: User, title: Book) -> bool:
         target_book = None
@@ -368,7 +369,7 @@ class Library:
 
 
 
-        if target_book.get_is_issued():  return False
+        if target_book.has_owner():  return False
 
         target_book.set_owner(user)
 
@@ -376,9 +377,8 @@ class Library:
 
         return True
 
-
-
-
+    def get_title(self):
+        pass
 
 
 class User:
@@ -396,6 +396,10 @@ class User:
 
     def __str__(self):
         return f'Name: {self.__name}\nLibrary card: {self.__library_card}'
+
+    def __repr__(self):
+        return f'{self.__name}'
+
 
     def get_name(self) -> str:
         return self.__name
@@ -416,17 +420,17 @@ class User:
             if book.get_title() == title:
                 book_find = book
                 break
-
-        self.__books.remove(book)
         return book_find
 
 
+    def return_book(self, title: str):
 
+        dell_book = self.find_book(title)
 
+        if dell_book is None:
+            raise ValueError()
 
-
-
-
+        self.__books.remove(dell_book)
 
 
 
@@ -437,9 +441,6 @@ class Book:
     __author: str
     __publication_year: int
     __genre: str
-
-
-
 
 
     def __init__(self, title: str, author: str, publication_year: int, genre: str):
@@ -455,6 +456,9 @@ class Book:
         return f'Name: {self.__title}\nAuthor{self.__author}\nYear publication: {self.__publication_year}\nGenre: {self.__genre}\nIssued: {None}\nUser: {None}'
 
 
+    def __repr__(self):
+        return f'{self.__title}'
+
 
     def get_title(self) -> str:
         return self.__title
@@ -468,17 +472,48 @@ class Book:
     def get_genre(self) -> str:
         return self.__genre
 
-    def get_is_issued(self) -> bool:
-        return  self.__owner is not None
-
 
     def set_owner(self, user: User):
         self.__owner = user
+
+    def has_owner(self) -> bool:
+        return self.__owner is not None
+
 
 
     def free(self):
         self.__owner = None
 
+
+
+#=======================================================
+
+
+bob = User("Bod", 25485)
+
+voina_mir = Book("Война и Мир", "Лев Толстой", 1800, "Художественная литература")
+
+
+
+
+library = Library("Пушкинская", "Волгоград")
+
+library.register_user(bob)
+
+library.register_book(voina_mir)
+
+library.try_give_to_book(bob, voina_mir)
+
+
+
+
+
+print(bob)
+print('='*20)
+print(library)
+print('='*20)
+print(voina_mir)
+print('='*20)
 
 
 
