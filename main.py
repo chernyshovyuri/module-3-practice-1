@@ -359,7 +359,7 @@ class Library:
 
 # НЕ выдается книга пользователю ошибку выдает!!!
 
-    def try_give_to_book(self, user: User, title: Book) -> bool:
+    def try_give_to_book(self, user: User, title: str) -> bool:
         target_book = None
 
         for book in self.__books:
@@ -502,7 +502,7 @@ library.register_user(bob)
 
 library.register_book(voina_mir)
 
-library.try_give_to_book(bob, voina_mir)
+library.try_give_to_book(bob, 'voina_mir' )
 
 
 
