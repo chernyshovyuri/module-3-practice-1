@@ -320,20 +320,20 @@ class Library:
 
     __name: str
     __adress: str
-    __book: list[Book]
-    __user: list[User]
+    __books: list[Book]
+    __users: list[User]
 
 
-    def __init__(self, name: str, address: str, book: list[Book], user: list[User]):
+    def __init__(self, name: str, address: str):
 
         self.__name = name
         self.__address = address
-        self.__book = book
-        self.__user = user
+        self.__books = []
+        self.__users = []
 
 
     def __str__(self):
-        return f'Name: {self.__name}\nAddress: { self.__address}\nBooks: {self.__book}\nUsers: {self.__user}'
+        return f'Name: {self.__name}\nAddress: { self.__address}'
 
     def get_name(self) -> str:
         return self.__name
@@ -341,39 +341,40 @@ class Library:
     def get_address(self) -> str:
         return self.__address
 
-    def get_book(self) -> list[Book]:
-        return self.__book
-
-    def get_user(self) -> list[User]:
-        return self.__user
-
-
-    def __add_book(self, new_book: list[str]) -> None:
-
-        blank_book = new_book.lower().strip()
-
-        for elem in self.__book:
-            if elem.lower().strip() == blank_book:
-                raise ValueError()
-
-        self.__book.append(new_book)
 
 
 
+    def register_book(self, book: Book):
+
+        if book not in self.__books:
+            self.__books.append(book)
 
 
 
+    def register_user(self, user: User):
+
+        if user not in self.__users:
+            self.__users.append(user)
 
 
 
+    def try_give_to_book(self, user: User, title: Book) -> bool:
+        target_book = None
+
+        for book in self.__books:
+            if book.get_title() == title:
+                target_book = book
+                break
 
 
 
+        if target_book.get_is_issued():  return False
 
+        target_book.set_owner(user)
 
+        user.take_book(target_book)
 
-
-
+        return True
 
 
 
@@ -384,23 +385,47 @@ class User:
 
     __name: str
     __library_card: int
-    __book: list[Book]
 
-    def __init__(self, name: str, library_card: int, book: list[Book]):
+
+    def __init__(self, name: str, library_card: int):
 
         self.__name = name
         self.__library_card = library_card
-        self.__book = book
+        self.__books = []
 
 
     def __str__(self):
-        return f'Name: {self.__name}\nLibrary card: {self.__library_card}\nBook: {self.__book}'
+        return f'Name: {self.__name}\nLibrary card: {self.__library_card}'
 
     def get_name(self) -> str:
         return self.__name
 
     def get_library_card(self) -> int:
         return self.__library_card
+
+
+    def take_book(self, book: Book):
+
+        self.__books.append(book)
+
+
+    def find_book(self, title: str) -> Book:
+        book_find = None
+
+        for book in self.__books:
+            if book.get_title() == title:
+                book_find = book
+                break
+
+        self.__books.remove(book)
+        return book_find
+
+
+
+
+
+
+
 
 
 
@@ -412,27 +437,27 @@ class Book:
     __author: str
     __publication_year: int
     __genre: str
-    __is_issued: bool
-    __user: list[User]
 
 
-    def __init__(self, title: str, author: str, publication_year: int, genre: str, is_issued: bool, user: list[User]):
+
+
+
+    def __init__(self, title: str, author: str, publication_year: int, genre: str):
 
         self.__title = title
         self.__author = author
         self.__publication_year = publication_year
         self.__genre = genre
-        self. __is_issued = is_issued
-        self.__user = user
+        self.__owner = None
 
 
     def __str__(self):
-        return f'Name: {self.__name}\nAuthor{self.__author}\nYear publication: {self.__publication_year}\nGenre: {self.__genre}\nIssued: {None}\nUser: {None}'
+        return f'Name: {self.__title}\nAuthor{self.__author}\nYear publication: {self.__publication_year}\nGenre: {self.__genre}\nIssued: {None}\nUser: {None}'
 
 
 
-    def get_name(self) -> str:
-        return self.__name
+    def get_title(self) -> str:
+        return self.__title
 
     def get_author(self) -> str:
         return self.__author
@@ -444,7 +469,17 @@ class Book:
         return self.__genre
 
     def get_is_issued(self) -> bool:
-        return self.__is_issued
+        return  self.__owner is not None
+
+
+    def set_owner(self, user: User):
+        self.__owner = user
+
+
+    def free(self):
+        self.__owner = None
+
+
 
 
 
