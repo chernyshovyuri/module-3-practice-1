@@ -368,6 +368,7 @@ class Library:
                 break
 
 
+        if target_book is None:  return False
 
         if target_book.has_owner():  return False
 
